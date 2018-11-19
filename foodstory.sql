@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2018 年 11 月 15 日 10:44
+-- 產生時間： 2018 年 11 月 19 日 12:18
 -- 伺服器版本: 10.1.36-MariaDB
 -- PHP 版本： 7.2.10
 
@@ -76,7 +76,7 @@ CREATE TABLE `seller_data` (
   `seller_web` text CHARACTER SET utf8 NOT NULL COMMENT '官方網站',
   `seller_introduce` text CHARACTER SET utf8 NOT NULL COMMENT '店家介紹',
   `seller_cover_photo` text CHARACTER SET utf8 NOT NULL COMMENT '封面照片路徑',
-  `logo_photo` int(11) NOT NULL COMMENT 'LOGO照片路徑',
+  `logo_photo` text CHARACTER SET utf8 NOT NULL COMMENT 'LOGO照片路徑',
   `seller_checkout` bit(1) NOT NULL COMMENT '結帳方式'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -85,7 +85,7 @@ CREATE TABLE `seller_data` (
 --
 
 INSERT INTO `seller_data` (`seller_sid`, `seller_leder`, `seller_opening`, `seller_fb`, `seller_ig`, `seller_web`, `seller_introduce`, `seller_cover_photo`, `logo_photo`, `seller_checkout`) VALUES
-(0, '大大貓', '9am - 9pm', 'https://www.facebook.com/', 'https://www.instagram.com/', 'https://tw.yahoo.com/', '愛與恨淚水交織的饅頭,每一口的口感你都會感受的到師父的血與汗,如果你問我這段故事有沒有意義的話....我一定回答你說『沒有』,我在2001年的時候就學會打嘴砲寫廢文了,跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話\0\r\n', '', 0, b'0');
+(0, '大大貓', '9am - 9pm', 'https://www.facebook.com/', 'https://www.instagram.com/', 'https://tw.yahoo.com/', '愛與恨淚水交織的饅頭,每一口的口感你都會感受的到師父的血與汗,如果你問我這段故事有沒有意義的話....我一定回答你說『沒有』,我在2001年的時候就學會打嘴砲寫廢文了,跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話\0\r\n', '', '0', b'0');
 
 -- --------------------------------------------------------
 
@@ -97,19 +97,20 @@ CREATE TABLE `seller_initial` (
   `seller_sid` int(11) NOT NULL COMMENT '店家流水號',
   `seller_name` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '店家名字',
   `seller_phone` varchar(10) CHARACTER SET utf8 NOT NULL COMMENT '店家電話',
-  `seller_EIN` varchar(8) CHARACTER SET utf8 NOT NULL COMMENT '統一編號',
+  `seller_EIN` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '統一編號',
   `seller_address` text CHARACTER SET utf8 NOT NULL COMMENT '店家住址',
   `seller_email` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '店家電子信箱',
   `seller_password` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '店家密碼',
-  `seller_status` bit(1) NOT NULL COMMENT '權限0關1開'
+  `seller_status` bit(1) NOT NULL COMMENT '權限0關1開',
+  `seller_create_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- 資料表的匯出資料 `seller_initial`
 --
 
-INSERT INTO `seller_initial` (`seller_sid`, `seller_name`, `seller_phone`, `seller_EIN`, `seller_address`, `seller_email`, `seller_password`, `seller_status`) VALUES
-(1, '哭哭饅頭店', '091234567', '12345678', '106台北市大安區辛亥路三段55號', 'wow@gmail.com', 'a1234567', b'1');
+INSERT INTO `seller_initial` (`seller_sid`, `seller_name`, `seller_phone`, `seller_EIN`, `seller_address`, `seller_email`, `seller_password`, `seller_status`, `seller_create_at`) VALUES
+(2, '哭哭饅頭店', '0912345678', '12345678', '台北市大安區', 'mopackp@gmail.com', 'abcd123456', b'0', '2018-11-19');
 
 -- --------------------------------------------------------
 
@@ -155,8 +156,9 @@ CREATE TABLE `user_data` (
 --
 
 INSERT INTO `user_data` (`user_id`, `user_name`, `user_phone`, `user_email`, `user_password`, `user_photo`, `user_status`, `user_create_time`) VALUES
-(0, '蔡耀諄', '0912345678', 'mopackp47557@gmail.com', 'a123456', '/img/user/photo.1', 1, '2018-11-15'),
-(1, '蔡耀諄', '0258963145', 'mopackp@gmail.com', 'a123456', '/img/user/photo.1', 1, '2018-11-15');
+(1, '小屌屌', '097654321', 'pppp@gmail.com', 'abcd1234', 'sdasdasda', 0, '2018-11-16'),
+(2, '哭哭喔', '0978848888', 'sadasdasdasd@gmail.com', 'abcd1234888', 'sdasdasd', 0, '2018-11-16'),
+(3, '蔡耀諄', '0960509861', 'mopackp47557@gmail.com', 'abcd123456', '123456', 0, '2018-11-19');
 
 --
 -- 已匯出資料表的索引
@@ -195,6 +197,22 @@ ALTER TABLE `user_data`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `user_email` (`user_email`),
   ADD UNIQUE KEY `user_phone` (`user_phone`);
+
+--
+-- 在匯出的資料表使用 AUTO_INCREMENT
+--
+
+--
+-- 使用資料表 AUTO_INCREMENT `seller_initial`
+--
+ALTER TABLE `seller_initial`
+  MODIFY `seller_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '店家流水號', AUTO_INCREMENT=3;
+
+--
+-- 使用資料表 AUTO_INCREMENT `user_data`
+--
+ALTER TABLE `user_data`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員流水號', AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
