@@ -10,7 +10,6 @@ $dsn = sprintf('mysql:dbname=%s;host=%s', $db_name, $db_host);
 // mysql:host=localhost;port=3307;dbname=testdb
 try {
     $pdo = new PDO($dsn, $db_user, $db_pass);
-
     // 連線使用的編碼設定
     $pdo->query("SET NAMES utf8");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
