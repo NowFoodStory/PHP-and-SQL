@@ -14,14 +14,12 @@ if(
 ){
     $sql = "SELECT `user_id`, `user_name`, `user_phone`, `user_photo`,
      `user_status` 
-        FROM `user_data` WHERE `user_email`=? AND `user_password`=? AND`user_status`=1";
-}
+        FROM `user_data` WHERE `user_email`=? AND `user_password`=?";
 try{
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
-        $_GET['user_status'==1],
         $_POST['user_email'],
-        sha1($_POST['user_password']),
+        $_POST['user_password'],
     ]);
     if($stmt->rowCount()==1){
         $_SESSION['user'] = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -34,9 +32,10 @@ try{
     }else{
         $result['resultCode']=404;
         $result['errorMsg'] = '帳號或密碼錯誤';
-    }
+    } 
 }catch(PDOException $ex){
     $result['resultCode'] = 402;
     $result['errorMsg'] = $ex->getMessage();
 }
-}echo json_encode($result,JSON_UNESCAPED_UNICODE);
+}
+echo json_encode($result,JSON_UNESCAPED_UNICODE);
