@@ -24,7 +24,7 @@ if(
                 ?,
                 ?,
                 ?,
-                ?,
+                0,
                 0,
               NOW()
           )";
@@ -37,7 +37,6 @@ try{
         $_POST['user_phone'],
         $_POST['user_email'],
         $_POST['user_password'],
-        $_POST['user_photo'],
     ]);
     $result['success'] = true;
     $result['resultCode'] =200;
