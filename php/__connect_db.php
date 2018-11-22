@@ -20,3 +20,5 @@ try {
 if(! isset($_SESSION)){
     session_start(); // 啟用 session 功能
 }
+// setcookie("user_cookie", "", time()+3600);
+
