@@ -1,25 +1,45 @@
 <?php
 require __DIR__.'/__connect_db.php';
 
-$result =[
-    'success' =>false,
-    'resultCode'=>400,
-    'errorMsg'=>'註冊資料不足',
-    'postData'=>'',
+$result = [
+    'success' => false,
+    'resultCode' => 400,
+    'errorMsg' => '資料不足',
 ];
 
-if(
-    !empty($_POST['user_email'])and
-    !empty($_POST['user_password'])
-){
-    $sql = "SELECT `user_id`, `user_name`, `user_phone`, `user_photo`,
-     `user_status` 
-        FROM `user_data` WHERE `user_email`=? AND `user_password`=?";
+$entityBody = file_get_contents('php://input');
+
+$bdata = json_decode($entityBody, true);
+
+print_r($bdata);
+
+
+$result['data_from'] = $bdata;
+
+$reuire_fields = [
+    'user_email',
+    'user_password'
+];
+foreach ($reuire_fields as $rf) {
+    if (empty($bdata[$rf])) {
+        $result['resultCode'] = 405;
+        $result['errorMsg'] = $rf . '為必要欄位';
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+}
+$sql = "SELECT `user_id`, `user_name`, `user_phone`, `user_photo`,
+`user_status` 
+   FROM `user_data` WHERE `user_email`=? AND `user_password`=?";
+
+
+$stmt = $pdo->prepare($sql);
+
 try{
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
-        $_POST['user_email'],
-        $_POST['user_password'],
+        $bdata['user_email'],
+        $bdata['user_password'],
     ]);
     if($stmt->rowCount()==1){
         $_SESSION['user'] = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -36,6 +56,5 @@ try{
 }catch(PDOException $ex){
     $result['resultCode'] = 402;
     $result['errorMsg'] = $ex->getMessage();
-}
 }
 echo json_encode($result,JSON_UNESCAPED_UNICODE);

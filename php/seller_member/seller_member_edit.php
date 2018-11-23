@@ -1,5 +1,4 @@
 <?php
-
 $result = [
     'success' => false,
     'resultCode' => 400,
@@ -22,10 +21,13 @@ print_r($bdata);
 $result['data_from'] = $bdata;
 
 $reuire_fields = [
-    'user_name',
-    'user_phone',
-    'user_email',
-    'user_password'
+    'seller_name',
+    'principal',
+    'seller_phone',
+    'seller_EIN',
+    'seller_address',
+    'seller_email',
+    'seller_password'
 ];
 foreach($reuire_fields as $rf){
     if(empty($bdata[$rf])){
@@ -38,21 +40,27 @@ foreach($reuire_fields as $rf){
 
 ////TODO: 先用 SELECT 檢查密碼是否正確
 
-$sql = "UPDATE `user_data` SET 
-                `user_name`=?,
-                `user_phone`=?,
-                `user_email`=?,
-                `user_password`=?
-                WHERE `user_id`=? ";
+$sql = "UPDATE `seller_initial` SET 
+                `seller_name`=?,
+                `principal`=?,
+                `seller_phone`=?,
+                `seller_EIN`=?,
+                `seller_address`=?,
+                `seller_email`=?,
+                `seller_password`=?,
+                WHERE `seller_sid`=? ";
 
 $stmt = $pdo->prepare($sql);
 
 $stmt->execute([
-    $bdata['user_name'],
-    $bdata['user_phone'],
-    $bdata['user_email'],
-    $bdata['user_password'],
-    $_SESSION['user']['user_id']
+    $bdata['seller_name'],
+    $bdata['principal'],
+    $bdata['seller_phone'],
+    $bdata['seller_EIN'],
+    $bdata['seller_address'],
+    $bdata['seller_email'],
+    $bdata['seller_password'],
+    $_SESSION['seller']['seller_sid']
 ]);
 if($stmt->rowCount()==1){
     $result['success'] = true;

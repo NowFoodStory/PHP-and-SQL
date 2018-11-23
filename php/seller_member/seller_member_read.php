@@ -1,5 +1,6 @@
+
 <?php
-if(! isset($_SESSION['user'])){
+if(! isset($_SESSION['seller'])){
     echo json_encode($result, JSON_UNESCAPED_UNICODE);
     exit;
 }
@@ -7,7 +8,7 @@ $result = [
     'success' => true,
     'resultCode' => 200,
     'errorMsg' => '',
-    'data' => $_SESSION['user'],
+    'data' => $_SESSION['seller'],
 ];
 
 echo json_encode($result, JSON_UNESCAPED_UNICODE);

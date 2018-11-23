@@ -9,17 +9,17 @@ $result = [
 
 $from_me = true;
 
-if(! isset($_SESSION['user'])){
+if(! isset($_SESSION['seller'])){
     echo json_encode($result,JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 switch($_SERVER['REQUEST_METHOD']){
     case 'GET':
-    require __DIR__. '/user_member_read.php';
+    require __DIR__. '/seller_member_read.php';
     exit;
     case 'PUT':
-    require __DIR__.'/user_member_edit.php';
+    require __DIR__.'/seller_member_edit.php';
     exit;
     default:
     $result['resultCode'] = 401;
