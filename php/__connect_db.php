@@ -22,3 +22,5 @@ if(! isset($_SESSION)){
 }
 // setcookie("user_cookie", "", time()+3600);
 
+header('Access-Control-Allow-Origin: http://localhost:3000');
+header('Access-Control-Allow-Credentials: true');
