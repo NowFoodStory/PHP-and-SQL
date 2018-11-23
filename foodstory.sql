@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2018 年 11 月 19 日 12:18
+-- 產生時間： 2018 年 11 月 23 日 12:08
 -- 伺服器版本: 10.1.36-MariaDB
 -- PHP 版本： 7.2.10
 
@@ -69,7 +69,6 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `seller_data` (
   `seller_sid` int(11) NOT NULL COMMENT '對應到initial廠商流水號',
-  `seller_leder` text CHARACTER SET utf8 NOT NULL COMMENT '負責人',
   `seller_opening` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '營業時間',
   `seller_fb` text CHARACTER SET utf8 NOT NULL COMMENT '臉書',
   `seller_ig` text CHARACTER SET utf8 NOT NULL COMMENT '社群IG',
@@ -84,8 +83,8 @@ CREATE TABLE `seller_data` (
 -- 資料表的匯出資料 `seller_data`
 --
 
-INSERT INTO `seller_data` (`seller_sid`, `seller_leder`, `seller_opening`, `seller_fb`, `seller_ig`, `seller_web`, `seller_introduce`, `seller_cover_photo`, `logo_photo`, `seller_checkout`) VALUES
-(0, '大大貓', '9am - 9pm', 'https://www.facebook.com/', 'https://www.instagram.com/', 'https://tw.yahoo.com/', '愛與恨淚水交織的饅頭,每一口的口感你都會感受的到師父的血與汗,如果你問我這段故事有沒有意義的話....我一定回答你說『沒有』,我在2001年的時候就學會打嘴砲寫廢文了,跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話\0\r\n', '', '0', b'0');
+INSERT INTO `seller_data` (`seller_sid`, `seller_opening`, `seller_fb`, `seller_ig`, `seller_web`, `seller_introduce`, `seller_cover_photo`, `logo_photo`, `seller_checkout`) VALUES
+(0, '9am - 9pm', 'https://www.facebook.com/', 'https://www.instagram.com/', 'https://tw.yahoo.com/', '愛與恨淚水交織的饅頭,每一口的口感你都會感受的到師父的血與汗,如果你問我這段故事有沒有意義的話....我一定回答你說『沒有』,我在2001年的時候就學會打嘴砲寫廢文了,跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話跟你說個笑話\0\r\n', '', '0', b'0');
 
 -- --------------------------------------------------------
 
@@ -96,6 +95,7 @@ INSERT INTO `seller_data` (`seller_sid`, `seller_leder`, `seller_opening`, `sell
 CREATE TABLE `seller_initial` (
   `seller_sid` int(11) NOT NULL COMMENT '店家流水號',
   `seller_name` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '店家名字',
+  `principal` text NOT NULL COMMENT '負責人',
   `seller_phone` varchar(10) CHARACTER SET utf8 NOT NULL COMMENT '店家電話',
   `seller_EIN` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '統一編號',
   `seller_address` text CHARACTER SET utf8 NOT NULL COMMENT '店家住址',
@@ -109,8 +109,9 @@ CREATE TABLE `seller_initial` (
 -- 資料表的匯出資料 `seller_initial`
 --
 
-INSERT INTO `seller_initial` (`seller_sid`, `seller_name`, `seller_phone`, `seller_EIN`, `seller_address`, `seller_email`, `seller_password`, `seller_status`, `seller_create_at`) VALUES
-(2, '哭哭饅頭店', '0912345678', '12345678', '台北市大安區', 'mopackp@gmail.com', 'abcd123456', b'0', '2018-11-19');
+INSERT INTO `seller_initial` (`seller_sid`, `seller_name`, `principal`, `seller_phone`, `seller_EIN`, `seller_address`, `seller_email`, `seller_password`, `seller_status`, `seller_create_at`) VALUES
+(2, '哭哭饅頭店', '', '0912345678', '12345678', '台北市大安區', 'mopackp@gmail.com', 'abcd123456', b'0', '2018-11-19'),
+(3, '貓咪咖啡店', '', '1234577890', '77777777', '台北市信義區', 'killlmeplz@gmail.com', 'iiieiroqweioqwe', b'0', '2018-11-23');
 
 -- --------------------------------------------------------
 
@@ -156,9 +157,10 @@ CREATE TABLE `user_data` (
 --
 
 INSERT INTO `user_data` (`user_id`, `user_name`, `user_phone`, `user_email`, `user_password`, `user_photo`, `user_status`, `user_create_time`) VALUES
-(1, '小屌屌', '097654321', 'pppp@gmail.com', 'abcd1234', 'sdasdasda', 0, '2018-11-16'),
+(1, '小屌屌7', '9999999999', 'QQQQQQQQ@QQ', 'a123456', 'sdasdasda', 0, '2018-11-16'),
 (2, '哭哭喔', '0978848888', 'sadasdasdasd@gmail.com', 'abcd1234888', 'sdasdasd', 0, '2018-11-16'),
-(3, '蔡耀諄', '0960509861', 'mopackp47557@gmail.com', 'abcd123456', '123456', 0, '2018-11-19');
+(3, '蔡耀諄', '0960509861', 'mopackp47557@gmail.com', 'abcd123456', '123456', 0, '2018-11-19'),
+(4, '蔡一零', '0960509555', 'mopackp47@gmail.com', 'abcd123456', '0', 0, '2018-11-20');
 
 --
 -- 已匯出資料表的索引
@@ -206,13 +208,13 @@ ALTER TABLE `user_data`
 -- 使用資料表 AUTO_INCREMENT `seller_initial`
 --
 ALTER TABLE `seller_initial`
-  MODIFY `seller_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '店家流水號', AUTO_INCREMENT=3;
+  MODIFY `seller_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '店家流水號', AUTO_INCREMENT=4;
 
 --
 -- 使用資料表 AUTO_INCREMENT `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員流水號', AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員流水號', AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
