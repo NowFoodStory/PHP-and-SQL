@@ -1,4 +1,3 @@
-
 <?php
 if(! isset($_SESSION['seller'])){
     echo json_encode($result, JSON_UNESCAPED_UNICODE);
