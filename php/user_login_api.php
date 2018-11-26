@@ -29,7 +29,7 @@ foreach ($reuire_fields as $rf) {
     }
 }
 $sql = "SELECT `user_id`,`user_name`,`user_phone`,
-`user_email`,`user_password`,`user_photo`,`user_status` 
+`user_email`,`user_password`,`user_photo`,`user_status` ,`type`
    FROM `user_data` WHERE `user_email`=? AND `user_password`=?";
 
 

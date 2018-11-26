@@ -26,7 +26,7 @@ foreach($reuire_fields as $rf){
     }
 }
 
-$sql = "INSERT INTO `food_shop_list` SET
+$sql = "INSERT INTO `food_commodity` SET
     `food_name`=?,
     `food_class`=?,
     `food_quantity`=?,
