@@ -16,7 +16,7 @@ if(! isset($_SESSION['user'])){
 
 switch($_SERVER['REQUEST_METHOD']){
     case 'PUT':
-    require __DIR__.'/user_photo_edit.php.php';
+    require __DIR__.'/user_photo_edit.php';
     exit;
     default:
     $result['resultCode'] = 401;

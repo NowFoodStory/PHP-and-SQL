@@ -20,19 +20,6 @@ print_r($bdata);
 
 
 $result['data_from'] = $bdata;
-
-$reuire_fields = [
-    'user_photo'
-];
-foreach($reuire_fields as $rf){
-    if(empty($bdata[$rf])){
-        $result['resultCode'] = 405;
-        $result['errorMsg'] = $rf. '為必要欄位';
-        echo json_encode($result, JSON_UNESCAPED_UNICODE);
-        exit;
-    }
-}
-
 ////TODO: 先用 SELECT 檢查密碼是否正確
 
 $sql = "UPDATE `user_data` SET 
