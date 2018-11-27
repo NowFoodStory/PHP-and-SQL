@@ -15,13 +15,9 @@ if(! isset($_SESSION['user'])){
 }
 
 switch($_SERVER['REQUEST_METHOD']){
-    case 'GET':
-    require __DIR__. '/user_member_read.php';
-    exit;
     case 'PUT':
-    require __DIR__.'/user_member_edit.php';
+    require __DIR__.'/user_photo_edit.php.php';
     exit;
-    
     default:
     $result['resultCode'] = 401;
     $result['errorMsg'] = '錯誤的HTTP method';
