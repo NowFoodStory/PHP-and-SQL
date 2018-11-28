@@ -54,10 +54,14 @@ $stmt->execute([
     $bdata['user_password'],
     $_SESSION['user']['user_id']
 ]);
-if($stmt->rowCount()==1){
+if($stmt->rowCount()==1)
+    {
+    unset($_SESSION['user']);
+    $_SESSION['user'] = $stmt->fetch(PDO::FETCH_ASSOC);
     $result['success'] = true;
     $result['resultCode'] = 200;
     $result['errorMsg'] = '';
+    $result['user'] = $_SESSION['user'];
 } else {
     $result['resultCode'] = 406;
     $result['errorMsg'] = '修改沒有成功';

@@ -5,17 +5,12 @@ if (!isset($from_commodity)) {
     exit;
 }
 
-// $result = $_SESSION['seller']['seller_sid'];
 $keys = (int)$_SESSION['seller']['seller_sid'];
 $sql = sprintf(
     "SELECT * FROM food_commodity 
     WHERE seller_sid =%s",
     $keys
 );
-
-///接收不能為字串
-// echo json_encode($keys);
-// echo $sql;
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
