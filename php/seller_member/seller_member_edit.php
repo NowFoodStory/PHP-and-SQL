@@ -66,6 +66,13 @@ if($stmt->rowCount()==1){
     $result['success'] = true;
     $result['resultCode'] = 200;
     $result['errorMsg'] = '';
+    $_SESSION['seller']['seller_name'] = $bdata['seller_name'];
+    $_SESSION['seller']['principal'] = $bdata['principal'];
+    $_SESSION['seller']['seller_phone'] = $bdata['seller_phone'];
+    $_SESSION['seller']['seller_EIN'] = $bdata['seller_EIN'];
+    $_SESSION['seller']['seller_address'] = $bdata['seller_address'];
+    $_SESSION['seller']['seller_email'] = $bdata['seller_email'];
+    $_SESSION['seller']['seller_password'] = $bdata['seller_password'];
 } else {
     $result['resultCode'] = 406;
     $result['errorMsg'] = '修改沒有成功';
