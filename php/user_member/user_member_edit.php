@@ -56,12 +56,13 @@ $stmt->execute([
 ]);
 if($stmt->rowCount()==1)
     {
-    unset($_SESSION['user']);
-    $_SESSION['user'] = $stmt->fetch(PDO::FETCH_ASSOC);
     $result['success'] = true;
     $result['resultCode'] = 200;
     $result['errorMsg'] = '';
-    $result['user'] = $_SESSION['user'];
+    $_SESSION['user']['user_name'] = $bdata['user_name'];
+    $_SESSION['user']['user_phone'] = $bdata['user_phone'];
+    $_SESSION['user']['user_phone'] = $bdata['user_email'];
+    $_SESSION['user']['user_password'] = $bdata['user_password'];
 } else {
     $result['resultCode'] = 406;
     $result['errorMsg'] = '修改沒有成功';
