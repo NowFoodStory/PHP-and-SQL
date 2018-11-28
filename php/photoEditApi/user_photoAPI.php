@@ -15,6 +15,9 @@ if(! isset($_SESSION['user'])){
 }
 
 switch($_SERVER['REQUEST_METHOD']){
+    case 'GET':
+    require __DIR__. '/user_photo_read.php';
+    exit;
     case 'PUT':
     require __DIR__.'/user_photo_edit.php';
     exit;
