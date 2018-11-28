@@ -18,12 +18,13 @@ $result['formFood'] = $bdata;
 
 
 $reuire_fields = [
-    'food_name',
-    'food_class',
-    'food_quantity',
-    'food_price',
-    'food_discount',
-    'food_photo'
+    'seller_opening',
+    'seller_fb',
+    'seller_ig',
+    'seller_web',
+    'seller_introduce',
+    'seller_cover_photo',
+    'logo_photo'
 ];
 foreach($reuire_fields as $rf){
     if(empty($bdata[$rf])){
@@ -36,17 +37,10 @@ foreach($reuire_fields as $rf){
 
 
 
-// $sql = "INSERT INTO `food_commodity` ( `seller_sid`, `food_name`, 
-// `food_class`, `food_quantity`, `food_price`, `food_discount`, `food_photo`)
-//  VALUES (?,?,?,?,?,?,?)";
-$sql = "UPDATE `food_commodity` SET 
-                `seller_sid`=?,
-                `food_name`=?,
-                `food_quantity`=?,
-                `food_price`=?,
-                `food_discount`=?,
-                `food_photo`=?,
-                WHERE `food_sid`=? ";
+$sql = "INSERT INTO `seller_data` ( `seller_sid`,`seller_opening`, `seller_fb`, 
+`seller_ig`, `seller_web`, `seller_introduce`, `seller_cover_photo`, `logo_photo`)
+ VALUES (?,?,?,?,?,?,?,?)";
+
 
 $stmt = $pdo->prepare($sql);
 
@@ -57,8 +51,7 @@ $stmt->execute([
     $bdata['food_quantity'],
     $bdata['food_price'],
     $bdata['food_discount'],
-    $bdata['food_photo'],
-    $bdata['food_sid']
+    $bdata['food_photo']
 
 ]);
 if($stmt->rowCount()==1){
