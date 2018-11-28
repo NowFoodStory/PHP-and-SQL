@@ -36,8 +36,7 @@ if($stmt->rowCount()==1){
     $result['success'] = true;
     $result['resultCode'] = 200;
     $result['errorMsg'] = '';
-    $_SESSION['user']['user_photo'] = $stmt->fetch(PDO::FETCH_ASSOC);
-    $result['user'] = $_SESSION['user']['user_photo'];
+    $_SESSION['user']['user_photo'] = $bdata['user_photo'];
 
 } else {
     $result['resultCode'] = 406;
