@@ -61,7 +61,7 @@ if($stmt->rowCount()==1)
     $result['errorMsg'] = '';
     $_SESSION['user']['user_name'] = $bdata['user_name'];
     $_SESSION['user']['user_phone'] = $bdata['user_phone'];
-    $_SESSION['user']['user_phone'] = $bdata['user_email'];
+    $_SESSION['user']['user_email'] = $bdata['user_email'];
     $_SESSION['user']['user_password'] = $bdata['user_password'];
 } else {
     $result['resultCode'] = 406;
