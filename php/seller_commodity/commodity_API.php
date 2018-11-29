@@ -23,6 +23,9 @@ switch ($method){
     case 'GET':
     require __DIR__.'/commodity_GET.php';
     exit;
+    case 'POST':
+    require __DIR__.'/commodity_POST.php';
+    exit;
     case 'PUT':
     require __DIR__.'/commodity_PUT.php';
     exit;

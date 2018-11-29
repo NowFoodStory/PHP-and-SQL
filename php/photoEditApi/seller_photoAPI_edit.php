@@ -23,20 +23,20 @@ $result['data_from'] = $bdata;
 ////TODO: 先用 SELECT 檢查密碼是否正確
 
 $sql = "UPDATE `seller_initial` SET 
-                `user_photo`=?
-                WHERE `user_id`=? ";
+                `logo_photo`=?
+                WHERE `seller_sid`=? ";
 
 $stmt = $pdo->prepare($sql);
 
 $stmt->execute([
-    $bdata['user_photo'],
-    $_SESSION['user']['user_id']
+    $bdata['logo_photo'],
+    $_SESSION['seller']['seller_sid']
 ]);
 if($stmt->rowCount()==1){
     $result['success'] = true;
     $result['resultCode'] = 200;
     $result['errorMsg'] = '';
-    $_SESSION['user']['user_photo'] = $bdata['user_photo'];
+    $_SESSION['seller']['logo_photo'] = $bdata['logo_photo'];
 
 } else {
     $result['resultCode'] = 406;

@@ -29,7 +29,7 @@ foreach ($reuire_fields as $rf) {
     }
 }
 $sql = "SELECT `seller_sid`, `seller_name`,`seller_email`,`seller_password`,`principal`, `seller_phone`,`seller_EIN`,
-`seller_address`,`seller_status`,`type`
+`seller_address`,`seller_status`,`type`,`logo_photo`
    FROM `seller_initial` WHERE `seller_email`=? AND `seller_password`=?";
 
 
