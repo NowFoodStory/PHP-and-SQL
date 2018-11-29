@@ -21,9 +21,6 @@ switch ($method){
     case 'GET':
     require __DIR__.'/seller_data_GET.php';
     exit;
-    // case 'POST':
-    // require __DIR__.'/seller_data_POST.php';
-    // exit;
     case 'PUT':
     require __DIR__.'/seller_data_PUT.php';
     exit;

@@ -14,17 +14,18 @@ if(! isset($from_commodity)){
 $entityBody = file_get_contents('php://input');
 
 $bdata = json_decode($entityBody, true);
-$result['formFood'] = $bdata;
+$result['editFormSeller'] = $bdata;
 
 
 $reuire_fields = [
-    'seller_opening',
-    'seller_fb',
-    'seller_ig',
-    'seller_web',
-    'seller_introduce',
-    'seller_cover_photo',
-    'logo_photo'
+    'opening',
+    'close_time',
+    'FB',
+    'IG',
+    'Web',
+    'Introduction',
+    'cover_photo',
+    'checkout'
 ];
 foreach($reuire_fields as $rf){
     if(empty($bdata[$rf])){
@@ -35,30 +36,31 @@ foreach($reuire_fields as $rf){
     }
 }
 
-$sql = "UPDATE `seller_data` ( `seller_sid`,`seller_opening`, `seller_fb`, 
-`seller_ig`, `seller_web`, `seller_introduce`, `seller_cover_photo`, `logo_photo`)
- VALUES (?,?,?,?,?,?,?,?)";
-
+$sql = "UPDATE `seller_initial` SET `opening`=?, 
+`close_time`=?, `FB`=?, `IG`=?, `Web`=?, 
+`Introduction`=?,`cover_photo`=?, `checkout`=? 
+WHERE `seller_sid`=?";
 
 $stmt = $pdo->prepare($sql);
 
 $stmt->execute([
-    $_SESSION['seller']['seller_sid'],
-    $bdata['food_name'],
-    $bdata['food_class'],
-    $bdata['food_quantity'],
-    $bdata['food_price'],
-    $bdata['food_discount'],
-    $bdata['food_photo']
-
+    $bdata['opening'],
+    $bdata['close_time'],
+    $bdata['FB'],
+    $bdata['IG'],
+    $bdata['Web'],
+    $bdata['Introduction'],
+    $bdata['cover_photo'],
+    $bdata['checkout'],
+    $_SESSION['seller']['seller_sid']
 ]);
 if($stmt->rowCount()==1){
     $result['success'] = true;
     $result['resultCode'] = 200;
-    $result['errorMsg'] = '';
+    $result['errorMsg'] = '修改成功';
 } else {
-    $result['resultCode'] = 406;
-    $result['errorMsg'] = '上傳沒有成功';
+    $result['resultCode'] = 408;
+    $result['errorMsg'] = '修改失敗';
 }
 
 echo json_encode($result, JSON_UNESCAPED_UNICODE);
