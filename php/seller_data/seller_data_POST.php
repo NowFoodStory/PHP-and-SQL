@@ -35,8 +35,6 @@ foreach($reuire_fields as $rf){
     }
 }
 
-
-
 $sql = "INSERT INTO `seller_data` ( `seller_sid`,`seller_opening`, `seller_fb`, 
 `seller_ig`, `seller_web`, `seller_introduce`, `seller_cover_photo`, `logo_photo`)
  VALUES (?,?,?,?,?,?,?,?)";

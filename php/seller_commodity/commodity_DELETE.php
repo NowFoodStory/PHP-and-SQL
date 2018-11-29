@@ -5,17 +5,16 @@ $result = [
     'errorMsg' => '資料不足',
 ];
 
-if(! isset($from_me)){
+if(! isset($from_commodity)){
     echo json_encode($result, JSON_UNESCAPED_UNICODE);
     exit;
 }
-
 
 $entityBody = file_get_contents('php://input');
 
 $bdata = json_decode($entityBody, true);
 
-$sql ="DELETE FROM `seller_initial` WHERE `food_sid = ? `";
+$sql ="DELETE FROM `food_commodity` WHERE `food_sid` = ? ";
 
 $stmt = $pdo->prepare($sql);
 

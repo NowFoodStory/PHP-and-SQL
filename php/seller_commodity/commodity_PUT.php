@@ -42,10 +42,11 @@ foreach($reuire_fields as $rf){
 $sql = "UPDATE `food_commodity` SET 
                 `seller_sid`=?,
                 `food_name`=?,
+                `food_class`=?,
                 `food_quantity`=?,
                 `food_price`=?,
                 `food_discount`=?,
-                `food_photo`=?,
+                `food_photo`=?
                 WHERE `food_sid`=? ";
 
 $stmt = $pdo->prepare($sql);
