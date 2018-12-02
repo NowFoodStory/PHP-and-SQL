@@ -23,7 +23,7 @@ if(
             `seller_name`,`seller_phone`,`seller_EIN`,
             `seller_address`,`seller_email`,
             `seller_password`,`seller_status`,
-            `seller_create_at`)
+            `seller_create_at`,`logo_photo`)
             VALUES(
                 ?,
                 ?,
@@ -32,7 +32,8 @@ if(
                 ?,
                 ?,
                 0,
-                NOW()
+                NOW(),
+                'user.svg'
                 )";
 try{
     $stmt = $pdo->prepare($sql);

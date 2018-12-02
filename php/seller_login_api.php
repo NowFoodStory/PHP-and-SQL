@@ -11,7 +11,7 @@ $entityBody = file_get_contents('php://input');
 
 $bdata = json_decode($entityBody, true);
 
-print_r($bdata);
+// print_r($bdata);
 
 
 $result['data_from'] = $bdata;
@@ -39,7 +39,7 @@ try{
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         $bdata['seller_email'],
-        $bdata['seller_password'],
+        $bdata['seller_password']
     ]);
     if($stmt->rowCount()==1){
         $_SESSION['seller'] = $stmt->fetch(PDO::FETCH_ASSOC);
