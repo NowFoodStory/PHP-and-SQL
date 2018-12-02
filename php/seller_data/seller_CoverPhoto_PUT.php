@@ -1,15 +1,22 @@
 <?php
+require __DIR__.'/../__connect_db.php';
+
+
 $result = [
     'success' => false,
     'resultCode' => 400,
-    'errorMsg' => '資料不足',
+    'errorMsg' => '用戶沒有登入',
 ];
+header('Content-Type: application/json');
 
-if(! isset($from_commodity)){
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
+
+if(! isset($_SESSION['seller'])){
+    echo json_encode($result,JSON_UNESCAPED_UNICODE);
     exit;
 }
 
+
+$method = $_SERVER['REQUEST_METHOD'];
 
 $entityBody = file_get_contents('php://input');
 
@@ -18,13 +25,7 @@ $result['editFormSeller'] = $bdata;
 
 
 $reuire_fields = [
-    'opening',
-    'close_time',
-    'FB',
-    'IG',
-    'Web',
-    'Introduction',
-    'checkout'
+    'cover_photo'
 ];
 foreach($reuire_fields as $rf){
     if(empty($bdata[$rf])){
@@ -35,21 +36,13 @@ foreach($reuire_fields as $rf){
     }
 }
 
-$sql = "UPDATE `seller_initial` SET `opening`=?, 
-`close_time`=?, `FB`=?, `IG`=?, `Web`=?, 
-`Introduction`=?, `checkout`=? 
+$sql = "UPDATE `seller_initial` SET `cover_photo`=? 
 WHERE `seller_sid`=?";
 
 $stmt = $pdo->prepare($sql);
 
 $stmt->execute([
-    $bdata['opening'],
-    $bdata['close_time'],
-    $bdata['FB'],
-    $bdata['IG'],
-    $bdata['Web'],
-    $bdata['Introduction'],
-    $bdata['checkout'],
+    $bdata['cover_photo'],
     $_SESSION['seller']['seller_sid']
 ]);
 if($stmt->rowCount()==1){
