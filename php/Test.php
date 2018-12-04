@@ -39,5 +39,3 @@ FinalData.append({$student_id:scoredata})
 
 
 FinalData就是你要的
-
-"
