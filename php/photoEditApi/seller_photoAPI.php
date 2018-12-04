@@ -26,3 +26,4 @@ switch($_SERVER['REQUEST_METHOD']){
     $result['errorMsg'] = '錯誤的HTTP method';
 }
 echo json_encode($result,JSON_UNESCAPED_UNICODE);
+

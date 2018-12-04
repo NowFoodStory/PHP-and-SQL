@@ -25,4 +25,5 @@ $result = [
     'sellerProducts' => $stmt->fetchAll(PDO::FETCH_ASSOC),
 ];
 
+
 echo json_encode($result, JSON_UNESCAPED_UNICODE);
