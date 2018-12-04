@@ -17,24 +17,6 @@ $bdata = json_decode($entityBody, true);
 $result['editFormSeller'] = $bdata;
 
 
-$reuire_fields = [
-    'opening',
-    'close_time',
-    'FB',
-    'IG',
-    'Web',
-    'Introduction',
-    'checkout'
-];
-foreach($reuire_fields as $rf){
-    if(empty($bdata[$rf])){
-        $result['resultCode'] = 405;
-        $result['errorMsg'] = $rf. '為必要欄位';
-        echo json_encode($result, JSON_UNESCAPED_UNICODE);
-        exit;
-    }
-}
-
 $sql = "UPDATE `seller_initial` SET `opening`=?, 
 `close_time`=?, `FB`=?, `IG`=?, `Web`=?, 
 `Introduction`=?, `checkout`=? 
