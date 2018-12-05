@@ -18,5 +18,4 @@ foreach($seller as $k=>$s){
     $seller[$k]['foods'] = $food[$s['seller_sid']];
 }
 
-
 echo json_encode($seller, JSON_UNESCAPED_UNICODE);
