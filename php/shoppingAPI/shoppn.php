@@ -2,7 +2,7 @@
 require __DIR__.'/../__connect_db.php';
 
 $Seller = sprintf(
-    "SELECT `seller_sid` FROM `seller_initial`"
+    "SELECT `seller_sid`,`seller_name`,`opening`,`close_time`,`logo_photo` FROM `seller_initial`"
 );
 
 $sql = sprintf(
