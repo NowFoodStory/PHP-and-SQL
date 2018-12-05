@@ -25,8 +25,6 @@ foreach( $seller as $sellerID){
     $sp = (array($seller_sp,$seller1));
     print_r($sp);
     // echo json_encode($sp, JSON_UNESCAPED_UNICODE);
-
-    
 };
 
 

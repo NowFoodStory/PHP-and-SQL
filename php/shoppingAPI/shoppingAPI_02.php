@@ -13,12 +13,6 @@ $food = [];
 foreach($fc as $f){
     $food[$f['seller_sid']][] = $f;
 }
-
-
-
-
-
-
 $result = [
     'seller' => $seller,
     'food' => $food,
