@@ -14,7 +14,7 @@ foreach( $seller as $sellerID){
     $stmt1 = $pdo->prepare($sql1);
     $stmt1->execute();
     $seller1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-    $sp = (array_merge($sellerID,$seller1));
+    $sp = (array_merge($seller,$seller1));
     echo json_encode($sp, JSON_UNESCAPED_UNICODE);
 
 };
