@@ -1,0 +1,1 @@
+UPDATE `food_commodity` SET `food_quantity`=`food_quantity`-2  WHERE `food_sid`=25
