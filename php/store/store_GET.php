@@ -1,8 +1,7 @@
 <?php
 
 $seller_sid = isset($_GET['seller_sid']) ? intval($_GET['seller_sid']) : 1;
-$sql ="SELECT * FROM seller_initial 
-WHERE seller_sid = ?";
+$sql ="SELECT * FROM seller_initial WHERE seller_sid = ?";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$seller_sid]);
 $seller = $stmt->fetchAll(PDO::FETCH_ASSOC);

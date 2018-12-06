@@ -8,14 +8,16 @@ $from_commodity = true;
 $method = $_SERVER['REQUEST_METHOD'];
 $body = file_get_contents('php://input');
 $body = json_decode($body, true);
-
+//POST
 switch ($method){
     case 'GET':
-    require __DIR__.'/store_GTE.php';
+    require __DIR__.'/store_GET.php';
     exit;
     case 'POST':
-    require __DIR__.'/store_Buy.php';
+    require __DIR__.'/store_POST.php';
     exit;
+    case 'PUT':
+    require __DIR__.'/store_PUT.php';
     default:
     $result['resultCode'] = 401;
     $result['errorMsg'] = '錯誤的 HTTP method';

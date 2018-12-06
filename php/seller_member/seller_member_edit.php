@@ -20,23 +20,23 @@ print_r($bdata);
 
 $result['data_from'] = $bdata;
 
-$reuire_fields = [
-    'seller_name',
-    'principal',
-    'seller_phone',
-    'seller_EIN',
-    'seller_address',
-    'seller_email',
-    'seller_password'
-];
-foreach($reuire_fields as $rf){
-    if(empty($bdata[$rf])){
-        $result['resultCode'] = 405;
-        $result['errorMsg'] = $rf. '為必要欄位';
-        echo json_encode($result, JSON_UNESCAPED_UNICODE);
-        exit;
-    }
-}
+// $reuire_fields = [
+//     'seller_name',
+//     'principal',
+//     'seller_phone',
+//     'seller_EIN',
+//     'seller_address',
+//     'seller_email',
+//     'seller_password'
+// ];
+// foreach($reuire_fields as $rf){
+//     if(empty($bdata[$rf])){
+//         $result['resultCode'] = 405;
+//         $result['errorMsg'] = $rf. '為必要欄位';
+//         echo json_encode($result, JSON_UNESCAPED_UNICODE);
+//         exit;
+//     }
+// }
 
 ////TODO: 先用 SELECT 檢查密碼是否正確
 
