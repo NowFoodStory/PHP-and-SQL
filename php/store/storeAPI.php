@@ -17,9 +17,6 @@ switch ($method){
     case 'POST':
     require __DIR__.'/store_POST.php';
     exit;
-    // case 'PUT':
-    // require __DIR__.'/store_PUT.php';
-    // exit;
     default:
     $result['resultCode'] = 401;
     $result['errorMsg'] = '錯誤的 HTTP method';
