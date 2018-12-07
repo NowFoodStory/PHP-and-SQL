@@ -4,4 +4,5 @@ $B = '測試';
 
 $dataTime = date("Y-m-d h:i:sa");
 
-echo $dataTime , $A ,$B;
+$C = $dataTime;
+echo $C .$A .$B; 
