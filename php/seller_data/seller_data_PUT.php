@@ -19,7 +19,7 @@ $result['editFormSeller'] = $bdata;
 
 $sql = "UPDATE `seller_initial` SET `opening`=?, 
 `close_time`=?, `FB`=?, `IG`=?, `Web`=?, 
-`Introduction`=?, `checkout`=? 
+`Introduction`=?, `eggsAreReady`=? 
 WHERE `seller_sid`=?";
 
 $stmt = $pdo->prepare($sql);
@@ -31,7 +31,7 @@ $stmt->execute([
     $bdata['IG'],
     $bdata['Web'],
     $bdata['Introduction'],
-    $bdata['checkout'],
+    $bdata['eggsAreReady'],
     $_SESSION['seller']['seller_sid']
 ]);
 if($stmt->rowCount()==1){
