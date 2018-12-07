@@ -12,7 +12,7 @@ $seller = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $shop ="SELECT * FROM food_commodity WHERE seller_sid =?" ;
 $stmt2 =$pdo->prepare($shop);
 $stmt2 ->execute([$seller_sid]);
-$shops =  $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
 
 $SellerAndShop=[
     'sellerData'=>$seller,

@@ -8,6 +8,7 @@ $from_commodity = true;
 $method = $_SERVER['REQUEST_METHOD'];
 $body = file_get_contents('php://input');
 $body = json_decode($body, true);
+
 //POST
 switch ($method){
     case 'GET':
