@@ -10,35 +10,47 @@ $entityBody = file_get_contents('php://input');
 
 $bdata = json_decode($entityBody, true);
 $result['Buy'] = $bdata;
+
 $Numb= date("djis");
 $data = (string)$Numb;
 $Numb_sid = $data.$seller_sid.$_SESSION['user']['user_id'];
 
 
-echo $Numb_sid ; 
+//echo $Numb_sid ; 
 
 $sql = "INSERT INTO `orders` ( `Numb_sid`,`seller_sid`,`user_id`, 
-`food_sid`, `quantity`, `price_discount`, `order_time`, `status`)
+`food_sid`, `food_quantity`, `price_discount`, `order_time`, `status`)
  VALUES (?,?,?,?,?,?,NOW(),'1')";
 
 
 $stmt = $pdo->prepare($sql);
 
-$stmt->execute([
-    $Numb_sid,
-    $seller_sid,
-    $_SESSION['user']['user_id'],
-    $bdata['food_sid'],
-    $bdata['quantity'],
-    $bdata['price_discount']
-]);
+$m_sql = "UPDATE `food_commodity` SET `food_quantity`=`food_quantity`-? WHERE `food_sid`=?";
+$m_stmt  = $pdo->prepare($m_sql);
+
+foreach($bdata as $p){
+    $stmt->execute([
+        $Numb_sid,
+        $seller_sid,
+        $_SESSION['user']['user_id'],
+        $p['food_sid'],
+        $p['food_quantity'],
+        $p['price_discount']
+    ]);
+
+    $m_stmt->execute([
+        $p['food_quantity'],
+        $p['food_sid']
+    ]);
+}
+
+
 if($stmt->rowCount()==1){
     $result['success'] = true;
     $result['resultCode'] = 200;
-    $result['errorMsg'] = '';
+    $result['errorMsg'] = '上傳訂單成功';
 } else {
     $result['resultCode'] = 406;
-    $result['errorMsg'] = '上傳沒有成功';
+    $result['errorMsg'] = '上傳訂單成功';
 }
-
 echo json_encode($result, JSON_UNESCAPED_UNICODE);
