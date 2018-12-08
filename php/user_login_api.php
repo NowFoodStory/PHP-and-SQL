@@ -11,7 +11,7 @@ $entityBody = file_get_contents('php://input');
 
 $bdata = json_decode($entityBody, true);
 
-print_r($bdata);
+// print_r($bdata);
 
 
 $result['data_from'] = $bdata;
