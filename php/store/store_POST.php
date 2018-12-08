@@ -19,7 +19,7 @@ $Numb_sid = $data.$seller_sid.$_SESSION['user']['user_id'];
 //echo $Numb_sid ; 
 
 $sql = "INSERT INTO `orders` ( `Numb_sid`,`seller_sid`,`user_id`, 
-`food_sid`, `food_quantity`, `price_discount`, `order_time`, `status`)
+`food_sid`, `food_quantity`, `food_discount`, `order_time`, `status`)
  VALUES (?,?,?,?,?,?,NOW(),'1')";
 
 
@@ -35,7 +35,7 @@ foreach($bdata as $p){
         $_SESSION['user']['user_id'],
         $p['food_sid'],
         $p['food_quantity'],
-        $p['price_discount']
+        $p['food_discount']
     ]);
 
     $m_stmt->execute([
