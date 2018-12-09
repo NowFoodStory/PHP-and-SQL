@@ -51,6 +51,6 @@ if($stmt->rowCount()==1){
     $result['errorMsg'] = '上傳訂單成功';
 } else {
     $result['resultCode'] = 406;
-    $result['errorMsg'] = '上傳訂單成功';
+    $result['errorMsg'] = '上傳訂單失敗';
 }
 echo json_encode($result, JSON_UNESCAPED_UNICODE);

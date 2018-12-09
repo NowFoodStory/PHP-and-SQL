@@ -12,11 +12,11 @@ $seller = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $shop ="SELECT * FROM food_commodity WHERE seller_sid =?" ;
 $stmt2 =$pdo->prepare($shop);
 $stmt2 ->execute([$seller_sid]);
-
+$food = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 $SellerAndShop=[
     'sellerData'=>$seller,
-    'shopData'=>$shops,
+    'shopData'=>$food,
 ];
 echo json_encode($SellerAndShop, JSON_UNESCAPED_UNICODE);
 
