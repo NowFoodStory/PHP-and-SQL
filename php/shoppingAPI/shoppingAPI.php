@@ -5,7 +5,7 @@ $s_sql =  "SELECT `seller_sid`,`seller_name`,`opening`,`close_time`,`logo_photo`
 $s_stmt = $pdo->query($s_sql);
 $seller = $s_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$f_sql =  "SELECT * FROM `food_commodity` WHERE 1";
+$f_sql =  "SELECT * FROM `food_commodity` WHERE 1 and food_quantity > 0";
 $f_stmt = $pdo->query($f_sql);
 $fc = $f_stmt->fetchAll(PDO::FETCH_ASSOC);
 

@@ -9,7 +9,7 @@ $seller = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-$shop ="SELECT * FROM food_commodity WHERE seller_sid =?" ;
+$shop ="SELECT * FROM food_commodity WHERE seller_sid =? and food_quantity > 0" ;
 $stmt2 =$pdo->prepare($shop);
 $stmt2 ->execute([$seller_sid]);
 $food = $stmt2->fetchAll(PDO::FETCH_ASSOC);
