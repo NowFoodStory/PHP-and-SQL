@@ -9,7 +9,7 @@ $stmt = $pdo->prepare($seller_sid);
 $stmt->execute([$Numb_sid]);
 $seller = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$foodsql="SELECT o.food_name,o.food_photo,o.food_quantity,o.food_discount
+$foodsql="SELECT o.food_sid ,o.food_name,o.food_photo,o.food_quantity,o.food_discount
 FROM order_deta AS d 
 JOIN orders AS o 
 ON d.Numb_sid = o.Numb_sid

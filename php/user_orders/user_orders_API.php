@@ -8,24 +8,32 @@ $result = [
     'errorMsg' => '用戶沒有登入',
 ];
 header('Content-Type: application/json');
-$from_commodity = true;
 if(! isset($_SESSION['user'])){
     echo json_encode($result,JSON_UNESCAPED_UNICODE);
     exit;
 }
-$method = $_SERVER['REQUEST_METHOD'];
-$body = file_get_contents('php://input');
-$body = json_decode($body, true);
+$user_id = $_SESSION['user']['user_id'];
 
-switch ($method){
-    case 'GET':
-    require __DIR__.'/seller_data_GET.php';
-    exit;
-    case 'PUT':
-    require __DIR__.'/seller_data_PUT.php';
-    exit;
-    default:
-    $result['resultCode'] = 401;
-    $result['errorMsg'] = '錯誤的 HTTP method';
-}
+$seller_sid="SELECT s.seller_name,s.logo_photo,s.seller_address,s.opening,s.close_time,s.seller_phone 
+FROM order_deta AS d JOIN seller_initial AS s ON d.seller_sid = s.seller_sid
+WHERE d.user_id = ?";
+
+$stmt = $pdo->prepare($seller_sid);
+$stmt->execute([$user_id]);
+$seller = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$foodsql="SELECT o.food_name,o.food_photo,o.food_quantity,o.food_discount
+FROM order_deta AS d 
+JOIN orders AS o 
+ON d.Numb_sid = o.Numb_sid
+WHERE d.Numb_sid = ?";
+$stmt2 = $pdo->prepare($foodsql);
+$stmt2->execute([$Numb_sid]);
+$fc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+$result =[
+    'sellerData'=>$seller,
+    'FoodData'=>$fc,
+];
+
 echo json_encode($result, JSON_UNESCAPED_UNICODE);
