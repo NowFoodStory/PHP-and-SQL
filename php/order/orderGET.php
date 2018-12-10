@@ -12,7 +12,7 @@ $seller = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $foodsql="SELECT o.food_name,o.food_photo,o.food_quantity,o.food_discount
 FROM order_deta AS d 
 JOIN orders AS o 
-ON d.Numb_sid = d.Numb_sid
+ON d.Numb_sid = o.Numb_sid
 WHERE d.Numb_sid = ?";
 $stmt2 = $pdo->prepare($foodsql);
 $stmt2->execute([$Numb_sid]);
