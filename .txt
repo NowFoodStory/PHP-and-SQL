@@ -1,1 +1,25 @@
 UPDATE `food_commodity` SET `food_quantity`=`food_quantity`-2  WHERE `food_sid`=25
+
+
+blog_title  
+blog_author 
+blog_photo
+ blog_content
+
+SELECT * FROM orders AS o JOIN order_deta AS d ON o.Numb_sid = d.Numb_sid WHERE o.Numb_sid = ?
+
+
+SELECT o.seller_sid,d.food_name 
+FROM order_deta AS o JOIN orders AS d ON d.Numb_sid = o.Numb_sid 
+JOIN food_commodity AS f ON o.seller_sid=f.seller_sid
+
+
+
+SELECT s.seller_name,s.logo_photo,s.seller_address,s.opening,s.close_time FROM order_deta AS d JOIN seller_initial AS s ON d.seller_sid = s.seller_sid WHERE d.Numb_sid
+SELECT s.seller_sid,s.logo_photo,s.seller_name
+FROM order_deta AS d JOIN seller_initial AS s ON d.seller_sid = s.seller_sid
+WHERE d.user_id = 3
+
+
+SELECT o.food_name,o.food_photo,o.food_quantity,o.food_discount FROM order_deta AS d 
+JOIN orders AS o ON d.Numb_sid = o.Numb_sid WHERE d.Numb_sid = 
