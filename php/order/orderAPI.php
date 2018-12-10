@@ -22,14 +22,9 @@ if(! isset($_SESSION['seller'])){
 }else{
     echo json_encode($result,JSON_UNESCAPED_UNICODE);
 }
-
-//POST
 switch ($method){
     case 'GET':
-    require __DIR__.'/ordersGET.php';
-    exit;
-    case 'POST':
-    require __DIR__.'/ordersPUT.php';
+    require __DIR__.'/orderGET.php';
     exit;
     default:
     $result['resultCode'] = 401;

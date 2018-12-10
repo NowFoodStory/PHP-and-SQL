@@ -18,8 +18,8 @@ $Numb_sid = $seller_sid . $data . $_SESSION['user']['user_id'];
 //echo $Numb_sid ; 
 
 $sql = "INSERT INTO `orders` ( `Numb_sid`,`seller_sid`,`user_id`, 
-`food_sid`, `food_quantity`, `food_discount`, `order_time`, `status`)
- VALUES (?,?,?,?,?,?,NOW(),'1')";
+`food_sid`,`food_name`,`food_photo`, `food_quantity`, `food_discount`, `order_time`, `status`)
+ VALUES (?,?,?,?,?,?,?,?,NOW(),'1')";
 
 
 $stmt = $pdo->prepare($sql);
@@ -36,6 +36,8 @@ foreach ($bdata as $p) {
         $seller_sid,
         $_SESSION['user']['user_id'],
         $p['food_sid'],
+        $p['food_name'],
+        $p['food_photo'],
         $p['food_quantity'],
         $p['food_discount']
     ]);
