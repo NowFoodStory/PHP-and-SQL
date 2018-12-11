@@ -28,8 +28,8 @@ $stmt = $pdo->prepare($sql);
 $m_sql = "UPDATE `food_commodity` SET `food_quantity`=`food_quantity`-? WHERE `food_sid`=?";
 $m_stmt = $pdo->prepare($m_sql);
 
-$order_sql = "INSERT INTO`order_data`(`Numb_sid`,`seller_sid`,`user_id`,total,`order_time`)
-VALUES (?,?,?,?,NOW())";
+$order_sql = "INSERT INTO`order_data`(`Numb_sid`,`seller_sid`,`user_id`,`user_name`,`user_phone`total,`order_time`)
+VALUES (?,?,?,?,?,?,NOW())";
 $o_stmt = $pdo->prepare($order_sql);
 foreach ($bdata as $p) {
     $stmt->execute([
@@ -52,6 +52,8 @@ $o_stmt->execute([
     $Numb_sid,
     $seller_sid,
     $_SESSION['user']['user_id'],
+    $_SESSION['user']['user_name'],
+    $_SESSION['user']['user_phone'],
     $total
 ]);
 // $Numbsid =  $o_stmt->fetchAll(PDO::FETCH_ASSOC);
