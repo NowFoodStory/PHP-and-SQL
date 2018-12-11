@@ -17,7 +17,7 @@ $entityBody = file_get_contents('php://input');
 $bdata = json_decode($entityBody, true);
 $result['food'] = $bdata;
 
-$sql = "SELECT `food_sid`,`food_name`,`food_photo`,`food_quantity`,`food_discount` FROM `orders` WHERE Numb_sid=?";
+$sql = "SELECT food_sid,food_name,food_photo,food_quantity,food_discount FROM orders WHERE Numb_sid=?";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
     $bdata['Numb_sid']

@@ -17,7 +17,7 @@ $seller_sid = $_SESSION['seller']['seller_sid'];
 $Numb_sid = "SELECT d.Numb_sid,s.seller_name,s.seller_sid,d.total,d.status,d.order_time,d.user_name,d.user_phone 
 FROM order_data AS d 
 JOIN seller_initial AS s ON d.seller_sid = s.seller_sid 
-WHERE d.seller_sid = ? and d.status==1 ORDER BY d.order_time DESC ";
+WHERE d.seller_sid = ? and d.status==2 ORDER BY d.order_time DESC ";
 $stmt = $pdo->prepare($Numb_sid);
 $stmt->execute([$seller_sid]);
 $Numb_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
