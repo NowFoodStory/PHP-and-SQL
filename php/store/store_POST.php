@@ -27,7 +27,7 @@ $stmt = $pdo->prepare($sql);
 $m_sql = "UPDATE `food_commodity` SET `food_quantity`=`food_quantity`-? WHERE `food_sid`=?";
 $m_stmt = $pdo->prepare($m_sql);
 
-$order_sql = "INSERT INTO`order_deta`(`Numb_sid`,`seller_sid`,`user_id`,`order_time`)
+$order_sql = "INSERT INTO`order_data`(`Numb_sid`,`seller_sid`,`user_id`,`order_time`)
 VALUES (?,?,?,NOW())";
 $o_stmt = $pdo->prepare($order_sql);
 foreach ($bdata as $p) {

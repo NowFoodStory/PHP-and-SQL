@@ -23,7 +23,7 @@ foreach( $seller as $sellerID){
     $seller1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
     $seller_sp = array($sellerID);
     $sp = (array($seller_sp,$seller1));
-    print_r($sp);
+    // print_r($sp);
     // echo json_encode($sp, JSON_UNESCAPED_UNICODE);
 };
 

@@ -2,7 +2,7 @@
 $Numb_sid = isset($_GET['Numb_sid']) ? intval($_GET['Numb_sid']) : 1;
 
 $seller_sid="SELECT s.seller_name,s.logo_photo,s.seller_address,s.opening,s.close_time,s.seller_phone 
-FROM order_deta AS d JOIN seller_initial AS s ON d.seller_sid = s.seller_sid
+FROM order_data AS d JOIN seller_initial AS s ON d.seller_sid = s.seller_sid
 WHERE d.Numb_sid = ?";
 
 $stmt = $pdo->prepare($seller_sid);
@@ -10,7 +10,7 @@ $stmt->execute([$Numb_sid]);
 $seller = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $foodsql="SELECT o.food_sid ,o.food_name,o.food_photo,o.food_quantity,o.food_discount
-FROM order_deta AS d 
+FROM order_data AS d 
 JOIN orders AS o 
 ON d.Numb_sid = o.Numb_sid
 WHERE d.Numb_sid = ?";
