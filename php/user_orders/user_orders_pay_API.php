@@ -18,7 +18,7 @@ $user_id = $_SESSION['user']['user_id'];
     FROM order_data AS d 
     JOIN seller_initial AS s 
     ON d.seller_sid = s.seller_sid 
-    WHERE d.user_id = ? and d.status==2 ORDER BY d.order_time DESC";
+    WHERE d.user_id = ? and d.status=2 ORDER BY d.order_time DESC";
 
 $stmt = $pdo->prepare($Numb_sid);
 $stmt->execute([$user_id]);
