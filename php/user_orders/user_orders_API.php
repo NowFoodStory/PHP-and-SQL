@@ -14,11 +14,11 @@ if (!isset($_SESSION['user'])) {
 }
 $user_id = $_SESSION['user']['user_id'];
 ///會員有哪些訂單
-$Numb_sid = "SELECT d.Numb_sid,s.seller_name,s.seller_sid,d.total,d.status
-FROM order_data AS d 
-JOIN seller_initial AS s 
-ON d.seller_sid = s.seller_sid 
-WHERE d.user_id = ?";
+    $Numb_sid = "SELECT d.Numb_sid,s.seller_name,s.seller_sid,d.total,d.status,d.order_time
+    FROM order_data AS d 
+    JOIN seller_initial AS s 
+    ON d.seller_sid = s.seller_sid 
+    WHERE d.user_id = ? ";
 
 $stmt = $pdo->prepare($Numb_sid);
 $stmt->execute([$user_id]);
