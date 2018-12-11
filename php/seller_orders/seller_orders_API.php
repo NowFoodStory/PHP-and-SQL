@@ -8,19 +8,18 @@ $result = [
     'errorMsg' => '用戶沒有登入',
 ];
 header('Content-Type: application/json');
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['seller'])) {
     echo json_encode($result, JSON_UNESCAPED_UNICODE);
     exit;
 }
-$user_id = $_SESSION['user']['user_id'];
-///會員有哪些訂單
-    $Numb_sid = "SELECT d.Numb_sid,s.seller_name,s.seller_sid,d.total,d.status,d.order_time
-    FROM order_data AS d 
-    JOIN seller_initial AS s 
-    ON d.seller_sid = s.seller_sid 
-    WHERE d.user_id = ? and d.status==1 ORDER BY d.order_time DESC";
-
+$seller_sid = $_SESSION['seller']['seller_sid'];
+///廠商有哪些訂單
+$Numb_sid = "SELECT d.Numb_sid,s.seller_name,s.seller_sid,d.total,d.status,d.order_time,d.user_name,d.user_phone 
+FROM order_data AS d 
+JOIN seller_initial AS s ON d.seller_sid = s.seller_sid 
+WHERE d.seller_sid = ? ORDER BY `d`.`order_time` DESC ";
 $stmt = $pdo->prepare($Numb_sid);
-$stmt->execute([$user_id]);
+$stmt->execute([$seller_sid]);
 $Numb_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 echo json_encode($Numb_data, JSON_UNESCAPED_UNICODE);
