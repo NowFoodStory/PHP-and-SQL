@@ -17,11 +17,10 @@ $entityBody = file_get_contents('php://input');
 $bdata = json_decode($entityBody, true);
 $result['food'] = $bdata;
 
-$sql = "UPDATE `order_data` SET `status`=? WHERE Numb_sid =?";
+$sql = "UPDATE `order_data` SET `status`=2 WHERE Numb_sid =?";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
-    $bdata['Numb_sid'],
-    $bdata['status']
+    $bdata['Numb_sid']
 ]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
