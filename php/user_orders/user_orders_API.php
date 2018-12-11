@@ -13,9 +13,9 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 $user_id = $_SESSION['user']['user_id'];
-
+///會員有哪些訂單
 $Numb_sid = "SELECT s.seller_sid,s.seller_name,d.Numb_sid 
-FROM order_deta AS d 
+FROM order_data AS d 
 JOIN seller_initial AS s 
 ON d.seller_sid = s.seller_sid 
 WHERE d.user_id = ?";
@@ -24,35 +24,30 @@ $stmt = $pdo->prepare($Numb_sid);
 $stmt->execute([$user_id]);
 $Numb_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-print_r($stmt);
+
+///食物內容
 $foodsql = "SELECT o.food_name,o.food_photo,o.food_quantity,o.food_discount,o.status
 FROM order_data AS d 
 JOIN orders AS o 
 ON d.Numb_sid = o.Numb_sid
 WHERE d.Numb_sid = ?";
-$stmt2 = $pdo->prepare($foodsql);
-$stmt2->execute($nd['Numb_sid']);
+$stmt2 = $pdo->prepare($food);
+// $stmt2->execute();
 $fc = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+$Numb = [];
 
-// foreach ($Numb_data as $nd) {
-//     $Numb = $nd['Numb_sid'];
-// }
-
-
-// print_r($fc);
-
-
-$result =[
-    'sellerData'=>$Numb_data,
-    'FoodData'=>$fc,
-];
+foreach($Numb_data as $nd){
+    $Numb['Numb_sid'][] = $nd['Numb_sid'];
+}
 
 
 
-echo json_encode($result, JSON_UNESCAPED_UNICODE);
+// $result =[
+//     'sellerData'=>$Numb_data,
+//     'FoodData'=>$fc,
+// ];
 
 
-// SELECT * FROM order_deta AS d 
-// JOIN orders AS o 
-// ON d.Numb_sid = o.Numb_sid
-// WHERE d.Numb_sid = 31010533
+
+echo json_encode($Numb, JSON_UNESCAPED_UNICODE);
+// echo json_encode($fc, JSON_UNESCAPED_UNICODE);
