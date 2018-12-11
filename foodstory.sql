@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2018 年 12 月 10 日 13:57
+-- 產生時間： 2018 年 12 月 11 日 13:56
 -- 伺服器版本: 10.1.36-MariaDB
 -- PHP 版本： 7.2.10
 
@@ -72,7 +72,7 @@ CREATE TABLE `food_commodity` (
 
 INSERT INTO `food_commodity` (`food_sid`, `seller_sid`, `food_name`, `food_class`, `food_quantity`, `food_price`, `food_discount`, `food_photo`) VALUES
 (2, 3, '黑糖包子', '麵包', '55', '100', '50', '/54454/454'),
-(3, 3, '人肉肉包子', '麵包', '20', '100', '50', '/54454/454'),
+(3, 3, '人肉肉包子', '麵包', '-4', '100', '50', '/54454/454'),
 (22, 2, '鹹濕奶頭', '麵包', '10', '100', '10', '1/111'),
 (23, 4, '佛心饅頭', '麵包', '10', '100', '10', '1/111'),
 (24, 4, '佛心饅頭', '麵包', '10', '100', '10', '1/111'),
@@ -103,29 +103,36 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`Numb_sid`, `order_sid`, `seller_sid`, `user_id`, `food_sid`, `food_name`, `food_photo`, `food_quantity`, `food_discount`, `order_time`, `status`) VALUES
-('31010533', 96, 3, 3, 4, '測試饅頭', '照片', 2, 100, '2018-12-10', '1'),
-('31010533', 97, 3, 3, 3, '測試麵包', '照片', 2, 100, '2018-12-10', '1');
+('31111223', 118, 3, 3, 4, '測試饅頭', '照片', 2, 100, '2018-12-11', '1'),
+('31111223', 119, 3, 3, 3, '測試麵包', '照片', 2, 100, '2018-12-11', '1'),
+('31111233', 120, 3, 3, 4, '測試饅頭', '照片', 2, 100, '2018-12-11', '1'),
+('31111233', 121, 3, 3, 3, '測試麵包', '照片', 2, 100, '2018-12-11', '1');
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `order_deta`
+-- 資料表結構 `order_data`
 --
 
-CREATE TABLE `order_deta` (
+CREATE TABLE `order_data` (
   `sid` int(11) NOT NULL,
   `Numb_sid` int(255) NOT NULL,
   `seller_sid` int(255) NOT NULL,
   `user_id` int(255) NOT NULL,
-  `order_time` date NOT NULL
+  `user_name` text CHARACTER SET utf8 NOT NULL,
+  `user_phone` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `order_time` date NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1' COMMENT '未付款1 已付款2'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 資料表的匯出資料 `order_deta`
+-- 資料表的匯出資料 `order_data`
 --
 
-INSERT INTO `order_deta` (`sid`, `Numb_sid`, `seller_sid`, `user_id`, `order_time`) VALUES
-(21, 31010533, 3, 3, '2018-12-10');
+INSERT INTO `order_data` (`sid`, `Numb_sid`, `seller_sid`, `user_id`, `user_name`, `user_phone`, `total`, `order_time`, `status`) VALUES
+(28, 31111223, 3, 3, '0', 960509861, 400, '2018-12-10', 2),
+(29, 31111233, 3, 3, '蔡耀諄', 960509861, 400, '2018-12-11', 1);
 
 -- --------------------------------------------------------
 
@@ -265,9 +272,9 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_sid`);
 
 --
--- 資料表索引 `order_deta`
+-- 資料表索引 `order_data`
 --
-ALTER TABLE `order_deta`
+ALTER TABLE `order_data`
   ADD PRIMARY KEY (`sid`);
 
 --
@@ -318,13 +325,13 @@ ALTER TABLE `food_commodity`
 -- 使用資料表 AUTO_INCREMENT `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '訂單流水號', AUTO_INCREMENT=98;
+  MODIFY `order_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '訂單流水號', AUTO_INCREMENT=122;
 
 --
--- 使用資料表 AUTO_INCREMENT `order_deta`
+-- 使用資料表 AUTO_INCREMENT `order_data`
 --
-ALTER TABLE `order_deta`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+ALTER TABLE `order_data`
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- 使用資料表 AUTO_INCREMENT `seller_data`
