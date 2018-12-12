@@ -8,7 +8,7 @@ if (!isset($from_commodity)) {
 $keys = (int)$_SESSION['seller']['seller_sid'];
 $sql = sprintf(
     "SELECT `opening`, `close_time`,`FB`,`IG`,`Web`,`Introduction`, `logo_photo`,
-     `cover_photo`, `checkout`  FROM seller_initial 
+     `cover_photo`, `eggsAreReady`  FROM seller_initial 
     WHERE seller_sid =%s",
     $keys
 );

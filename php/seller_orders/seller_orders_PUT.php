@@ -9,7 +9,7 @@ $result = [
 ];
 
 
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['seller'])) {
     echo json_encode($result, JSON_UNESCAPED_UNICODE);
     exit;
 }
@@ -22,6 +22,13 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute([
     $bdata['Numb_sid']
 ]);
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if($stmt->rowCount()==1){
+    $result['success'] = true;
+    $result['resultCode'] = 200;
+    $result['errorMsg'] = '修改成功';
+} else {
+    $result['resultCode'] = 408;
+    $result['errorMsg'] = '修改失敗';
+}
 
 echo json_encode($result, JSON_UNESCAPED_UNICODE);
