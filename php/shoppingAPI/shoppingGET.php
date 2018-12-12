@@ -15,7 +15,13 @@ foreach($fc as $f){
 }
 
 foreach($seller as $k=>$s){
-    $seller[$k]['foods'] = $food[$s['seller_sid']];
+    if(isset($food[$s['seller_sid']])){
+        $seller[$k]['foods'] = $food[$s['seller_sid']];
+    }
 }
-
+foreach ($seller as $k => $s) {
+    if (! isset($seller[$k]['foods'])) {
+        unset($seller[$k]);
+    }
+}
 echo json_encode($seller, JSON_UNESCAPED_UNICODE);
