@@ -1,0 +1,25 @@
+<?php
+require __DIR__.'/../__connect_db.php';
+
+$s_sql =  "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo` FROM seller_initial ";
+$s_stmt = $pdo->query($s_sql);
+$seller = $s_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$f_sql =  "SELECT * FROM food_commodity WHERE food_class='壽司' and food_quantity > 0";
+$f_stmt = $pdo->query($f_sql);
+$fc = $f_stmt->fetchAll(PDO::FETCH_ASSOC);
+// $stmt->execute([]);
+$food = [];
+foreach($fc as $f){
+    $food[$f['seller_sid']][] = $f;
+}
+// print_r($food);
+// exit;
+foreach($seller as $k=>$s){
+    if(isset($food[$s['seller_sid']])){
+        $seller[$k]['foods'] = $food[$s['seller_sid']];
+    }
+    
+}
+echo json_encode($food, JSON_UNESCAPED_UNICODE);
+// echo json_encode($seller, JSON_UNESCAPED_UNICODE);

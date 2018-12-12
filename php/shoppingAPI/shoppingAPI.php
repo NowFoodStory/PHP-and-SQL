@@ -1,21 +1,19 @@
 <?php
 require __DIR__.'/../__connect_db.php';
+$from_shopping = true;
+$body = file_get_contents('php://input');
+$body = json_decode($body, true);
+$method = $_SERVER['REQUEST_METHOD'];
 
-$s_sql =  "SELECT `seller_sid`,`seller_name`,`opening`,`close_time`,`logo_photo` FROM seller_initial ";
-$s_stmt = $pdo->query($s_sql);
-$seller = $s_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$f_sql =  "SELECT * FROM `food_commodity` WHERE 1 and food_quantity > 0";
-$f_stmt = $pdo->query($f_sql);
-$fc = $f_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$food = [];
-foreach($fc as $f){
-    $food[$f['seller_sid']][] = $f;
+switch ($method){
+    case 'GET':
+    require __DIR__.'/shoppingGET.php';
+    exit;
+    case 'POST':
+    require __DIR__.'/shoppingPOST.php';
+    exit;
+    default:
+    $result['resultCode'] = 401;
+    $result['errorMsg'] = '錯誤的 HTTP method';
 }
-
-foreach($seller as $k=>$s){
-    $seller[$k]['foods'] = $food[$s['seller_sid']];
-}
-
-echo json_encode($seller, JSON_UNESCAPED_UNICODE);
+echo json_encode($result, JSON_UNESCAPED_UNICODE);
