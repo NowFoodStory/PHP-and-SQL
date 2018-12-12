@@ -30,5 +30,4 @@ if($stmt->rowCount()==1){
     $result['resultCode'] = 408;
     $result['errorMsg'] = '修改失敗';
 }
-
 echo json_encode($result, JSON_UNESCAPED_UNICODE);
