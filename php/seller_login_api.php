@@ -49,6 +49,10 @@ try{
         $result['errorMsg'] = '';
 
         $result['seller'] = $_SESSION['seller'];
+    }if($_SESSION['seller']['seller_status'] == 1){
+        $result['resultCode'] = 304;
+        $result['errorMsg'] = '該用戶已被停權';
+        unset($_SESSION['seller']);
     }else{
         $result['resultCode']=404;
         $result['errorMsg'] = '帳號或密碼錯誤';
