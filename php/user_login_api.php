@@ -30,7 +30,7 @@ foreach ($reuire_fields as $rf) {
 }
 $sql = "SELECT `user_id`,`user_name`,`user_phone`,
 `user_email`,`user_password`,`user_photo`,`user_status` ,`type`
-   FROM `user_data` WHERE `user_email`=? AND `user_password`=? AND `user_status` = 0";
+   FROM `user_data` WHERE `user_email`=? AND `user_password`=?";
 
 
 $stmt = $pdo->prepare($sql);
@@ -49,9 +49,15 @@ try {
         $result['errorMsg'] = '';
 
         $result['user'] = $_SESSION['user'];
-    }else {
+    }
+    else {
         $result['resultCode'] = 404;
         $result['errorMsg'] = '帳號或密碼錯誤';
+    }
+    if($_SESSION['user']['user_status'] == 1){
+        $result['resultCode'] = 304;
+        $result['errorMsg'] = '該用戶已被停權';
+        unset($_SESSION['user']);
     }
 } catch (PDOException $ex) {
     $result['resultCode'] = 402;
