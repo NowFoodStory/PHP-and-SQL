@@ -29,7 +29,7 @@ foreach ($reuire_fields as $rf) {
     }
 }
 $sql = "SELECT `user_id`,`user_name`,`user_phone`,
-`user_email`,`user_password`,`user_photo`,`user_status` ,`type`
+`user_email`,`user_password`,`user_photo`,`user_status`,`type`
    FROM `user_data` WHERE `user_email`=? AND `user_password`=?";
 
 
@@ -43,24 +43,22 @@ try {
     ]);
     if ($stmt->rowCount() == 1) {
         $_SESSION['user'] = $stmt->fetch(PDO::FETCH_ASSOC);
-
         $result['success'] = true;
         $result['resultCode'] = 200;
         $result['errorMsg'] = '';
-
         $result['user'] = $_SESSION['user'];
-    }
-    else {
+    }else{
         $result['resultCode'] = 404;
         $result['errorMsg'] = '帳號或密碼錯誤';
-    }
-    if($_SESSION['user']['user_status'] == 1){
-        $result['resultCode'] = 304;
-        $result['errorMsg'] = '該用戶已被停權';
-        unset($_SESSION['user']);
     }
 } catch (PDOException $ex) {
     $result['resultCode'] = 402;
     $result['errorMsg'] = $ex->getMessage();
-}
+}if (isset($_SESSION['user']['user_status']) && ($_SESSION['user']['user_status'] == 1) ) {
+    $result['resultCode'] = 444;
+    $result['errorMsg'] = '該用戶已被停權';
+    unset($_SESSION['user']);
+} 
+
+
 echo json_encode($result, JSON_UNESCAPED_UNICODE);
