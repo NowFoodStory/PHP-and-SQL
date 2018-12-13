@@ -18,7 +18,7 @@ $sql = "UPDATE `seller_initial` SET `seller_status`=1 WHERE `seller_sid` =?";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
-    $bdata['user_id']
+    $bdata['seller_sid']
 ]);
 
 if($stmt->rowCount()==1){
