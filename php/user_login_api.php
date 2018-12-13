@@ -49,7 +49,7 @@ try {
         $result['errorMsg'] = '';
 
         $result['user'] = $_SESSION['user'];
-    } else {
+    }else {
         $result['resultCode'] = 404;
         $result['errorMsg'] = '帳號或密碼錯誤';
     }
