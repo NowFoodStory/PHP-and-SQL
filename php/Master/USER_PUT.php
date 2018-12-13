@@ -16,13 +16,11 @@ $result['food'] = $bdata;
 
 $sql = "UPDATE `user_data` SET `user_status`=1 WHERE `user_id` =?";
 
-
-
-
-
+$stmt = $pdo->prepare($sql);
 $stmt->execute([
     $bdata['user_id']
 ]);
+
 if($stmt->rowCount()==1){
     $result['success'] = true;
     $result['resultCode'] = 200;
