@@ -25,6 +25,13 @@ if(empty($bdata)){
     );
 }
 
+//     foreach ($bdata as $k => $v) {
+//         $ar2[$k] = $pdo->quote($v);
+//     }
+// $f_sql = sprintf(
+//     "SELECT * FROM food_commodity WHERE food_class=%s and food_quantity > 0",
+//     implode(' OR food_class=', $ar2)
+// );
 
 $f_stmt = $pdo->query($f_sql);
 $fc = $f_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -47,14 +54,13 @@ foreach ($seller as $k => $s) {
 }
 $result=[];
 foreach ($seller as $k => $s) {
-    if (! isset($seller[$k]['foods'])) {
-        // unset($seller[$k]);
+    if ( isset($seller[$k]['foods'])) {
         $result[] = $seller[$k];
     }
 }
 // foreach ($seller as $k => $s) {
 //     if ( isset($seller[$k]['foods'])) {
-        
+//         $result[] = $seller[$k];
 //         //unset($seller[$k]);
 //     }
 // }
