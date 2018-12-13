@@ -57,8 +57,9 @@ try{
         $result['resultCode']=404;
         $result['errorMsg'] = '帳號或密碼錯誤';
     } 
-}catch(PDOException $ex){
-    $result['resultCode'] = 402;
-    $result['errorMsg'] = $ex->getMessage();
 }
+// catch(PDOException $ex){
+//     $result['resultCode'] = 402;
+//     $result['errorMsg'] = $ex->getMessage();
+// }
 echo json_encode($result,JSON_UNESCAPED_UNICODE);
