@@ -54,9 +54,9 @@ try{
 }catch(PDOException $ex){
     $result['resultCode'] = 402;
     $result['errorMsg'] = $ex->getMessage();
-}
-// catch(PDOException $ex){
-//     $result['resultCode'] = 402;
-//     $result['errorMsg'] = $ex->getMessage();
-// }
+}if (isset($_SESSION['seller']['seller_status']) && ($_SESSION['seller']['seller_status'] == 1) ) {
+    $result['resultCode'] = 444;
+    $result['errorMsg'] = '該用戶已被停權';
+    unset($_SESSION['user']);
+} 
 echo json_encode($result,JSON_UNESCAPED_UNICODE);
