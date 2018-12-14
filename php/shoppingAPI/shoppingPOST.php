@@ -44,19 +44,6 @@ if (empty($bdata['city']) && empty($bdata['search'])) {
 
 }
 
-
-
-// if(empty($bdata['search'])){
-//     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial ";
-// } else {
-//     $a = '\''.'%'.$bdata['search'].'%'.'\'';
-    
-//     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_name LIKE $a";
-
-// }
-
-
-// $s_sql=" SELECT `seller_sid`,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE '%台北市大安區%'";
 $s_stmt = $pdo->query($s_sql);
 $seller = $s_stmt->fetchAll(PDO::FETCH_ASSOC);
 
