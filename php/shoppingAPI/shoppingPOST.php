@@ -30,18 +30,17 @@ $fc = $f_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (empty($bdata['place']) && empty($bdata['search'])) {
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial ";
-}else if(!empty($bdata['place'])) {
+}else if(!empty($bdata['place']) && empty($bdata['search'])) {
     $a = '\'' . '%' . $bdata['place'] . '%' . '\'';
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $a";
 
-}else if(!empty($bdata['search'])){
+}else if(empty($bdata['place']) && !empty($bdata['search'])){
     $b = '\'' . '%' . $bdata['search'] . '%' . '\'';
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $b";
 }else{
     $a = '\'' . '%' . $bdata['place'] . '%' . '\'';
     $b = '\'' . '%' . $bdata['search'] . '%' . '\'';
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $a and seller_name LIKE $b";
-
 }
 
 $s_stmt = $pdo->query($s_sql);
