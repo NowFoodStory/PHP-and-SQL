@@ -2,7 +2,7 @@
 $result = [
     'success' => false,
     'resultCode' => 400,
-    'errorMsg' => '請從',
+    'errorMsg' => '請從正確的網址進入',
 ];
 if (!isset($from_shopping)) {
     echo json_encode($result, JSON_UNESCAPED_UNICODE);
@@ -25,19 +25,25 @@ if(empty($bdata)){
     );
 }
 
-//     foreach ($bdata as $k => $v) {
-//         $ar2[$k] = $pdo->quote($v);
-//     }
-// $f_sql = sprintf(
-//     "SELECT * FROM food_commodity WHERE food_class=%s and food_quantity > 0",
-//     implode(' OR food_class=', $ar2)
-// );
-
 $f_stmt = $pdo->query($f_sql);
 $fc = $f_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial ";
+
+if(empty($bdata)){
+$s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo` FROM seller_initial ";
+}else{
+    $s_sql = sprintf(
+        "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo` FROM seller_initial WHERE LIKE%s%%%,
+        implode('LIKE')
+    )
+
+}
 $s_stmt = $pdo->query($s_sql);
+
+
+
+
+
 $seller = $s_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $food = [];
@@ -58,10 +64,5 @@ foreach ($seller as $k => $s) {
         $result[] = $seller[$k];
     }
 }
-// foreach ($seller as $k => $s) {
-//     if ( isset($seller[$k]['foods'])) {
-//         $result[] = $seller[$k];
-//         //unset($seller[$k]);
-//     }
-// }
+
 echo json_encode($result, JSON_UNESCAPED_UNICODE);
