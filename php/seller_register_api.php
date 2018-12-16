@@ -23,7 +23,7 @@ if(
             `seller_name`,`seller_phone`,`seller_EIN`,
             `seller_address`,`seller_email`,
             `seller_password`,`seller_status`,
-            `seller_create_at`,`logo_photo`)
+            `seller_create_at`,`logo_photo`,`lng`,`lat`,`distance`)
             VALUES(
                 ?,
                 ?,
@@ -33,8 +33,13 @@ if(
                 ?,
                 0,
                 NOW(),
-                'user.svg'
+                'user.svg',
+                '25.033285',
+                '121.570123',
+                '2.6'
                 )";
+                //25.033285, 121.570123
+                //
 try{
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
