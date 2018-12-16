@@ -27,9 +27,13 @@ if (empty($bdata['foodclass'])) {
 $f_stmt = $pdo->query($f_sql);
 $fc = $f_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if ($bdata['city'] === "縣市"){
+if ($bdata['city'] === "城市"){
+    // echo "城市判斷成空值";
     $bdata['city']=empty($bdata['city']);
 }
+
+
+
 
 if (empty($bdata['city']) && empty($bdata['search'])) {
     // echo "都不帶值";
@@ -70,5 +74,10 @@ foreach ($seller as $k => $s) {
     if (isset($seller[$k]['foods'])) {
         $result[] = $seller[$k];
     }
+}
+
+if($result == null){
+    $result['resultCode'] = 255;
+    $result['errorMsg'] = '沒有搜尋結果';
 }
 echo json_encode($result, JSON_UNESCAPED_UNICODE);
