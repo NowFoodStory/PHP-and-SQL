@@ -36,7 +36,11 @@ if (empty($bdata['place']) && empty($bdata['search'])) {
 
 }else if(empty($bdata['place']) && !empty($bdata['search'])){
     $b = '\'' . '%' . $bdata['search'] . '%' . '\'';
+<<<<<<< HEAD
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_name LIKE $b";
+=======
+    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $b";
+>>>>>>> parent of 22229e1... Update shoppingPOST.php
 }else{
     $a = '\'' . '%' . $bdata['place'] . '%' . '\'';
     $b = '\'' . '%' . $bdata['search'] . '%' . '\'';
