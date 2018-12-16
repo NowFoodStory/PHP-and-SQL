@@ -27,8 +27,8 @@ if (empty($bdata['foodclass'])) {
 $f_stmt = $pdo->query($f_sql);
 $fc = $f_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if ($bdata['city'] === "城市"){
-    // echo "城市判斷成空值";
+if ($bdata['city'] === "縣市"){
+    // echo "縣市判斷成空值";
     $bdata['city']=empty($bdata['city']);
 }
 
