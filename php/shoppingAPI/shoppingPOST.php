@@ -27,14 +27,14 @@ if (empty($bdata['foodclass'])) {
 $f_stmt = $pdo->query($f_sql);
 $fc = $f_stmt->fetchAll(PDO::FETCH_ASSOC);
 //city and search
-if (empty($bdata['city']) && empty($bdata['search'])) {
+if (empty($bdata['place']) && empty($bdata['city'])) {
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial ";
-}else if(!empty($bdata['city']) && empty($bdata['search'])) {
-    echo '條件:城市欄位帶值';
+}else if(!empty($bdata['place']) && empty($bdata['city'])) {
+    // echo '條件:城市欄位帶值';
     $a = '\''.'%'.$bdata['city'].$bdata['place'].'%'.'\'';
     $pdo->quote($a);
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $a";
-}else if(empty($bdata['city']) && !empty($bdata['search'])){
+}else if(empty($bdata['place']) && !empty($bdata['city'])){
     // echo '條件:搜尋框帶值';
     $b = '\''.'%'.$bdata['search'].'%'.'\'';
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_name LIKE $b";
