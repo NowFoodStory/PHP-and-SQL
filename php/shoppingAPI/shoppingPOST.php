@@ -27,7 +27,9 @@ if (empty($bdata['foodclass'])) {
 $f_stmt = $pdo->query($f_sql);
 $fc = $f_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
+if ($bdata['city'] ="縣市"){
+    $bdata['city']=empty($bdata['city']);
+}
 if (empty($bdata['city']) && empty($bdata['search'])) {
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial ";
 }else if(!empty($bdata['city']) && empty($bdata['search'])) {
