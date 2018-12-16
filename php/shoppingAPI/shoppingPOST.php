@@ -75,9 +75,12 @@ foreach ($seller as $k => $s) {
         $result[] = $seller[$k];
     }
 }
-
-if($result == null){
-    $result['resultCode'] = 255;
-    $result['errorMsg'] = '沒有搜尋結果';
+if(empty($result)){
+    $resultMsg['resultCode'] = 255;
+    $resultMsg['errorMsg'] = '沒有搜尋結果';
+}elseif(!empty($result)){
+    $resultMsg['resultCode']= 200;
+    $resultMsg['errorMsg'] = '搜尋成功';
+    $resultMsg['result'] = $result;
 }
-echo json_encode($result, JSON_UNESCAPED_UNICODE);
+echo json_encode($resultMsg, JSON_UNESCAPED_UNICODE);
