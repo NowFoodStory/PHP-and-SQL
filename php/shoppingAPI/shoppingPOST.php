@@ -28,21 +28,17 @@ $f_stmt = $pdo->query($f_sql);
 $fc = $f_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-if (empty($bdata['place']) && empty($bdata['search'])) {
+if (empty($bdata['city']) && empty($bdata['search'])) {
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial ";
-}else if(!empty($bdata['place']) && empty($bdata['search'])) {
-    $a = '\'' . '%' . $bdata['place'] . '%' . '\'';
+}else if(!empty($bdata['city']) && empty($bdata['search'])) {
+    $a = '\'' . '%' . $bdata['city'].$bdata['place'] . '%' . '\'';
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $a";
 
-}else if(empty($bdata['place']) && !empty($bdata['search'])){
+}else if(empty($bdata['city']) && !empty($bdata['search'])){
     $b = '\'' . '%' . $bdata['search'] . '%' . '\'';
-<<<<<<< HEAD
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_name LIKE $b";
-=======
-    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $b";
->>>>>>> parent of 22229e1... Update shoppingPOST.php
 }else{
-    $a = '\'' . '%' . $bdata['place'] . '%' . '\'';
+    $a = '\'' . '%' . $bdata['city'].$bdata['place'] . '%' . '\'';
     $b = '\'' . '%' . $bdata['search'] . '%' . '\'';
     $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $a and seller_name LIKE $b";
 }
