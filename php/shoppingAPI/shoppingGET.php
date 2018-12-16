@@ -31,18 +31,18 @@ if ($bdata['city'] ="縣市"){
     $bdata['city']=empty($bdata['city']);
 }
 if (empty($bdata['city']) && empty($bdata['search'])) {
-    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial ";
+    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat`,`distance` FROM seller_initial ";
 }else if(!empty($bdata['city']) && empty($bdata['search'])) {
     $a = '\'' . '%' . $bdata['city'].$bdata['place'] . '%' . '\'';
-    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $a";
+    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat`,`distance` FROM seller_initial WHERE seller_address LIKE $a";
 
 }else if(empty($bdata['city']) && !empty($bdata['search'])){
     $b = '\'' . '%' . $bdata['search'] . '%' . '\'';
-    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_name LIKE $b";
+    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat`,`distance` FROM seller_initial WHERE seller_name LIKE $b";
 }else{
     $a = '\'' . '%' . $bdata['city'].$bdata['place'] . '%' . '\'';
     $b = '\'' . '%' . $bdata['search'] . '%' . '\'';
-    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $a and seller_name LIKE $b";
+    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat`,`distance` FROM seller_initial WHERE seller_address LIKE $a and seller_name LIKE $b";
 }
 
 $s_stmt = $pdo->query($s_sql);

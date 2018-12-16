@@ -37,21 +37,21 @@ if ($bdata['city'] === "縣市"){
 
 if (empty($bdata['city']) && empty($bdata['search'])) {
     // echo "都不帶值";
-    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial ";
+    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat`,`distance`  FROM seller_initial ";
 }else if(!empty($bdata['city']) && empty($bdata['search'])) {
     // echo "城市欄位帶值 欄位後面順便帶區";
     $a = '\'' . '%' . $bdata['city'].$bdata['place'] . '%' . '\'';
-    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $a";
+    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat`,`distance`  FROM seller_initial WHERE seller_address LIKE $a";
 
 }else if(empty($bdata['city']) && !empty($bdata['search'])){
     // echo "搜尋欄位帶值";
     $b = '\'' . '%' . $bdata['search'] . '%' . '\'';
-    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_name LIKE $b";
+    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat`,`distance`  FROM seller_initial WHERE seller_name LIKE $b";
 }else{
     // echo"城市欄位跟搜尋帶值";
     $a = '\'' . '%' . $bdata['city'].$bdata['place'] . '%' . '\'';
     $b = '\'' . '%' . $bdata['search'] . '%' . '\'';
-    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat` FROM seller_initial WHERE seller_address LIKE $a and seller_name LIKE $b";
+    $s_sql = "SELECT seller_sid,`seller_name`,`opening`,`close_time`,`logo_photo`,`lng`,`lat`,`distance`  FROM seller_initial WHERE seller_address LIKE $a and seller_name LIKE $b";
 }
 
 $s_stmt = $pdo->query($s_sql);
