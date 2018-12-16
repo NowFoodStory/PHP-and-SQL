@@ -11,9 +11,9 @@ $entityBody = file_get_contents('php://input');
 
 $bdata = json_decode($entityBody, true);
 $result['Buy'] = $bdata;
-$Numbdate = substr(date("ymdHis"),2,8).mt_rand(100000,999999);
-$Numb_sid = $seller_sid . $Numbdate . $_SESSION['user']['user_id'];
-
+$Numb = date("dj");
+$data = (string)$Numb;
+$Numb_sid = $seller_sid . $data . $_SESSION['user']['user_id'];
 
 //echo $Numb_sid ; 
 
