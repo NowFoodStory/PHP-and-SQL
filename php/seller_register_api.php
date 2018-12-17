@@ -9,13 +9,7 @@ $result = [
 ];
 //
 if(
-    // !empty 空值
     !empty($_POST['seller_name'])
-    // !empty($_POST['seller_phone']) and
-    // !empty($_POST['seller_EIN'])and
-    // !empty($_POST['seller_address']) and
-    // !empty($_POST['seller_email']) and
-    // !empty($_POST['seller_password'])
     ){
         $result['postData'] =$_POST;
 //result 結果
@@ -34,8 +28,8 @@ if(
                 0,
                 NOW(),
                 'user.svg',
-                '25.033285',
                 '121.570123',
+                '25.033285',
                 '2.6'
                 )";
                 //25.033285, 121.570123
